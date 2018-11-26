@@ -1,18 +1,20 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>|
-         <router-link to="/products">Products</router-link>|
-         <router-link to="/users">Users</router-link>
+    <nav class="navbar navbar-expand navbar-dark bg-warning">
+      <div class= "nav bavbar-bar">
+      <router-link to="/" class="nav-item nav-link active">Home</router-link> |
+      <router-link to="/about"  class="nav-item nav-link">About</router-link>|
+      <router-link to="/products"  class="nav-item nav-link">Products</router-link>|
+    <router-link to="/users"  class="nav-item nav-link">Users</router-link>
     </div>
+    </nav>
     <router-view/>
   </div>
 </template>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
