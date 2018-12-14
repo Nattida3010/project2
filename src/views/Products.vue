@@ -1,61 +1,100 @@
 <template>
     <div>
         <h1> Product List</h1>
-        <!-- <ul>
-            <li v-for="item in products" :key="item.id">
-                {{item.id}} {{item.title}} {{item.price}}
-            </li>
-        </ul>
-     -->
-    
-        <!-- <HelloWorld :msg="message"></HelloWorld> -->
+       <b-row>
+      <b-col md="6" class="my-1">
+        <b-form-group horizontal label="Filter" class="mb-0">
+          <b-input-group>
+            <b-form-input v-model="filter" placeholder="Type to Search" />
+            <b-input-group-append>
+              <b-btn :disabled="!filter" @click="filter = ''">Clear</b-btn>
+            </b-input-group-append>
+          </b-input-group>
+        </b-form-group>
+      </b-col>
+      </b-row>
           <b-table striped hover
            :items="products" 
            :fields="fields" 
+           :filter="filter"
             :per-page ="pageSize"
-            :current-page="pageIndex"></b-table>
+            :current-page="pageIndex">
+             <template slot="show_details" slot-scope="row">
+      <!-- we use @click.stop here to prevent emitting of a 'row-clicked' event  -->
+      <b-button size="sm" @click.stop="row.toggleDetails" class="mr-2">
+       {{ row.detailsShowing ? 'Hide' : 'Show'}} Details
+      </b-button>
+      <!-- In some circumstances you may need to use @click.native.stop instead -->
+      <!-- As `row.showDetails` is one-way, we call the toggleDetails function on @change -->
+      <b-form-checkbox @click.native.stop @change="row.toggleDetails" v-model="row.detailsShowing">
+        Details via check
+      </b-form-checkbox>
+    </template>
+    <template slot="row-details" slot-scope="row">
+      <b-card>
+        <b-row class="mb-2">
+          <b-col sm="3" class="text-sm-right"><b>Age:</b></b-col>
+          <b-col>{{ row.item.age }}</b-col>
+        </b-row>
+        <b-row class="mb-2">
+          <b-col sm="3" class="text-sm-right"><b>Is Active:</b></b-col>
+          <b-col>{{ row.item.isActive }}</b-col>
+        </b-row>
+        <b-button size="sm" @click="row.toggleDetails">Hide Details</b-button>
+      </b-card>
+    </template> </b-table>
             
     <b-pagination  align="center"  size="md" :total-rows="products.length" v-model="pageIndex" :per-page="pageSize">
     </b-pagination>
     </div>
 </template>
 <script>
-import axios from 'axios'
+import axios from "axios";
 //import HelloWorld from '@/components/HelloWorld.vue'
 export default {
-    name : 'products',
+    name : "products",
     data(){
         return {
-            message: 'Project 2',
+            message: "Project 2",
             products:[],
             pageSize:10,
             pageIndex:1,
+            filter: null,
             fields:[
             {
-                key:'id',
+                key:"id",
                 sortable : true,
                   variant : 'info'
             },
             {
-                key:'title',
+                key:"title",
                 sortable : true,
-               variant :'danger'
+               variant :"danger"
             },
             {
-                key:'price',
+                key:"price",
                 sortable : true,
-                variant : 'success'
-            },
+                variant : "success"
+            }
             ],
         }
     },
-    mounted(){
-      var instance = this
-        axios.get('https://shielded-spire-43023.herokuapp.com/api/products/')
-        .then(function(response){
-            console.log(response.data)
-          instance .products = response.data.data
-        })
+    computed: {
+    sortOptions () {
+      // Create an options list from our fields
+      return this.fields
+        .filter(f => f.sortable)
+        .map(f => { return { text: f.label, value: f.key } })
     }
-}
+  },
+    mounted(){
+      var instance = this;
+        axios
+        .get("https://shrouded-plains-42723.herokuapp.com/api/products/")
+        .then(function(response){
+            console.log(response.data);
+          instance .products = response.data.data;
+        });
+    }
+};
 </script>

@@ -9,6 +9,7 @@
     </div>
     </nav>
     <router-view/>
+    <a href="http://localhost/app/products/">Product</a>
   </div>
 </template>
 
