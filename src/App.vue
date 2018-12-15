@@ -4,13 +4,13 @@
       <div class= "nav bavbar-bar">
       <router-link to="/" class="nav-item nav-link active">Home</router-link> |
       <router-link to="/about"  class="nav-item nav-link">About</router-link>|
-      <router-link to="/products"  class="nav-item nav-link">Categories</router-link>|
-    <router-link to="/users"  class="nav-item nav-link">Users</router-link>|
+      <router-link to="/categories"  class="nav-item nav-link">Categories</router-link>|
+ 
     
     </div>
     </nav>
     <router-view/>
-    <a href="http://localhost/app/products/">Product</a>
+    <a href="http://localhost/app/categories/">Categories</a>
   </div>
 </template>
 

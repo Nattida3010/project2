@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1> Categories. List</h1>
+        <h1> Categories List</h1>
        <b-row>
       <b-col md="6" class="my-1">
         <b-form-group horizontal label="Filter" class="mb-0">
@@ -89,7 +89,7 @@ export default {
         .get("https://pure-fjord-76227.herokuapp.com/api/categories/")
         .then(function(response){
             console.log(response.data);
-          instance .categories = response.data.data;
+          instance.categories = response.data.data;
         });
     }
 };
