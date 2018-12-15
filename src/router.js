@@ -23,11 +23,7 @@ export default new Router({
       name: 'users',
       component: Users
     },
-    {
-      path: '/Grap',
-      name: 'Grap',
-      component: Grap
-    },
+    
     
     {
       path: '/about',
