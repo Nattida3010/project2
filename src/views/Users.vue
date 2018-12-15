@@ -64,7 +64,7 @@ export default {
       var instance = this
       //this.users อ้างถึง instance
     axios
-      .get('https://shrouded-plains-42723.herokuapp.com/api/purchase/')
+      .get("https://pure-fjord-76227.herokuapp.com/api/categories/")
       .then(function(response){
             console.log(response.data)
             instance.users = response.data.data

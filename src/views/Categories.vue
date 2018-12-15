@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1> Product List</h1>
+        <h1> Categories. List</h1>
        <b-row>
       <b-col md="6" class="my-1">
         <b-form-group horizontal label="Filter" class="mb-0">
@@ -14,7 +14,7 @@
       </b-col>
       </b-row>
           <b-table striped hover
-           :items="products" 
+           :items="categories" 
            :fields="fields" 
            :filter="filter"
             :per-page ="pageSize"
@@ -36,7 +36,7 @@
       </template>
             </b-table>
             
-    <b-pagination  align="center"  size="md" :total-rows="products.length" v-model="pageIndex" :per-page="pageSize">
+    <b-pagination  align="center"  size="md" :total-rows="categories.length" v-model="pageIndex" :per-page="pageSize">
     </b-pagination>
     </div>
 </template>
@@ -44,27 +44,27 @@
 import axios from "axios";
 //import HelloWorld from '@/components/HelloWorld.vue'
 export default {
-    name : "products",
+    name : "categories",
     data(){
         return {
             message: "Project 2",
-            products:[],
+            categories:[],
             pageSize:10,
             pageIndex:1,
             filter: null,
             fields:[
             {
-                key:"id",
+                key:"categories._id",
                 sortable : true,
                   variant : 'info'
             },
             {
-                key:"title",
+                key:"description",
                 sortable : true,
                variant :"danger"
             },
             {
-                key:"price",
+                key:"picture",
                 sortable : true,
                 variant : "success"
             },
@@ -86,10 +86,10 @@ export default {
     mounted(){
       var instance = this;
         axios
-        .get("https://shrouded-plains-42723.herokuapp.com/api/products/")
+        .get("https://pure-fjord-76227.herokuapp.com/api/categories/")
         .then(function(response){
             console.log(response.data);
-          instance .products = response.data.data;
+          instance .categories = response.data.data;
         });
     }
 };
