@@ -3,7 +3,7 @@
         <h1> Categories List</h1>
        <b-row>
       <b-col md="6" class="my-1">
-        <b-form-group horizontal label="Filter" class="mb-0" align="center" >
+        <b-form-group horizontal label="Filter" class="mb-0" >
           <b-input-group>
             <b-form-input v-model="filter" placeholder="Type to Search" />
             <b-input-group-append>
